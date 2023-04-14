@@ -1,0 +1,52 @@
+{
+  "name": "example-contentful-theExampleApp-js",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start:watch": "nodemon ./bin/www --ignore public/",
+    "start:dev": "node ./bin/www",
+    "debug": "node debug ./bin/www",
+    "start": "NODE_ENV=production node ./bin/www",
+    "start:production": "NODE_ENV=production node ./bin/www",
+    "lint": "eslint ./app.js routes",
+    "format": "eslint --fix . bin --ignore public node_modules",
+    "pretest": "npm run lint",
+    "test": "npm run test:unit && npm run test:integration && npm run test:e2e",
+    "test:e2e": "node test/run-e2e-test.js",
+    "test:e2e:dev": "node test/run-e2e-test.js --dev",
+    "test:integration": "jest test/integration",
+    "test:integration:watch": "jest test/integration --watch",
+    "test:unit": "jest test/unit",
+    "test:unit:watch": "jest test/unit --watch"
+  },
+  "engines": {
+    "node": ">=8.9.3"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "contentful": "^6.0.0",
+    "cookie-parser": "~1.4.3",
+    "dotenv": "^5.0.0",
+    "execa": "^0.9.0",
+    "express": "^4.18.2",
+    "helmet": "^6.1.5",
+    "lodash": "^4.17.21",
+    "marked": "^4.3.0",
+    "morgan": "^1.9.1",
+    "pug": "^3.0.2"
+  },
+  "devDependencies": {
+    "cheerio": "^1.0.0-rc.12",
+    "cookie": "^0.3.1",
+    "eslint": "^8.38.0",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-node": "^6.0.0",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "jest": "^29.5.0",
+    "nodemon": "^2.0.22",
+    "supertest": "^6.3.3",
+    "yargs": "^17.7.1"
+  }
+}
