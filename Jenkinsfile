@@ -14,6 +14,18 @@ pipeline {
                 checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'Github-Credentials', url: 'https://github.com/narendra7306/nodejs-app.git']])
             }
         }
+        stage('SonarQube analysis') {
+            environment {
+                scannerHome = tool 'SonarScanner'
+                PROJECT_NAME = "sr-nodejs-app"
+            }
+            steps {
+                withSonarQubeEnv('SonarQubeServer') { // If you have configured more than one global server connection, you can specify its name
+                  sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=$PROJECT_NAME \
+                    -Dsonar.sources=."
+                }
+            }
+        }
         stage('nodejs build') {
             steps {
                 sh 'npm install'
